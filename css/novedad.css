@@ -42,3 +42,9 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
 }
+.novedad-archivo-container {
+  margin-bottom: 0.5vw;
+}
+.novedad-archivo {
+  margin-bottom: 0.5vw;
+}
