@@ -9,7 +9,7 @@ function getNovedades() {
   $("#novedades-container").empty();
   $.ajax({
     type: "GET",
-    url: "https://emersis.casya.com.ar/api/v1/novedades",
+    url: "http://emersis.casya.com.ar/api/v1/novedades",
     success: function (result) {
       novedades = result.novedades;
       novedades.forEach((novedad) => {
