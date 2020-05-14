@@ -65,7 +65,7 @@ function guardarNovedad() {
     descripcion: descripcion,
     activo: activo,
   };
-  var url = "http://emersis.casya.com.ar/api/v1/novedades";
+  var url = "https://emersis.casya.com.ar/api/v1/novedades";
   var type = "POST";
   if (novedadElegida != null) {
     url = url + "/" + novedadElegida.id;
@@ -99,7 +99,7 @@ function editarNovedad(id) {
 function eliminarNovedad(id) {
   $.ajax({
     type: "DELETE",
-    url: "http://emersis.casya.com.ar/api/v1/novedades/" + id,
+    url: "https://emersis.casya.com.ar/api/v1/novedades/" + id,
     success: function () {
       getNovedades();
     },
