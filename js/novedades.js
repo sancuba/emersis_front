@@ -158,17 +158,23 @@ function verArchivosNovedad(id) {
     success: function (result) {
       novedad = result;
       $("#novedad-archivos-popup").empty();
-      novedad.files.forEach((file) => {
-        var item =
-          "<div>" +
-          "<label>" +
-          file.descripcion +
-          "</label>" +
-          '<a href="https://emersis.casya.com.ar/public/storage/files/' +
-          file.file +
-          '" download="archivo" >Descargar</a>' +
-          "</div>";
-      });
+      if (novedad.files.length > 0) {
+        novedad.files.forEach((file) => {
+          var item =
+            "<div>" +
+            "<label>" +
+            file.descripcion +
+            "</label>" +
+            '<a href="https://emersis.casya.com.ar/public/storage/files/' +
+            file.file +
+            '" download="archivo" >Descargar</a>' +
+            "</div>";
+          $("#novedad-archivos-popup").append(item);
+        });
+      } else {
+        var item = "<div>" + "<p>No posee archivos</p>" + "</div>";
+        $("#novedad-archivos-popup").append(item);
+      }
     },
     error: function (result) {},
     contentType: "application/json",
