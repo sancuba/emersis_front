@@ -126,7 +126,6 @@ function guardarArchivos(id) {
     i++;
   }
   if (i > 0) {
-    var json = { file: archivos, description: descripciones };
     $.ajax({
       type: "POST",
       url: "https://emersis.casya.com.ar/api/v1/novedades/" + id + "/files",
