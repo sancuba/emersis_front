@@ -161,18 +161,21 @@ function verArchivosNovedad(id) {
       if (novedad.files.length > 0) {
         novedad.files.forEach((file) => {
           var item =
-            "<div>" +
+            "<div class='novedad-archivos-popup-row'>" +
             "<label>" +
             file.descripcion +
             "</label>" +
-            '<a href="https://emersis.casya.com.ar/public/storage/files/' +
+            '<a class="novedad-archivos-popup-a" href="https://emersis.casya.com.ar/public/storage/' +
             file.file +
-            '" download="archivo" >Descargar</a>' +
+            '" download="' +
+            file.descripcion +
+            '" >Descargar</a>' +
             "</div>";
           $("#novedad-archivos-popup").append(item);
         });
       } else {
-        var item = "<div>" + "<p>No posee archivos</p>" + "</div>";
+        var item =
+          "<div>" + "<p style='margin: 0;'>No posee archivos</p>" + "</div>";
         $("#novedad-archivos-popup").append(item);
       }
     },

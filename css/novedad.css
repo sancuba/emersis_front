@@ -68,5 +68,12 @@ body {
   width: 32vw !important;
   border-radius: 0.5vw;
   box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.75);
-  padding: 0.5vw 1vw 0.5vw 1vw;
+  padding: 1.5vw 2vw 1.5vw 2vw;
+}
+.novedad-archivos-popup-row {
+  margin-bottom: 0.5vw;
+  margin-top: 0.5vw;
+}
+.novedad-archivos-popup-a {
+  float: right;
 }
