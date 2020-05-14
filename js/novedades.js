@@ -117,23 +117,24 @@ function guardarArchivos(id) {
   if (id == null && novedadElegida != null) {
     id = novedadElegida.id;
   }
-  var archivos = [];
-  var descripciones = [];
+  var data = new FormData();
   $(".novedad-archivo").each(function () {
-    if (this.files[0] != null) {
-      archivos.push(this.files[0]);
-      descripciones.push(this.files[0].name);
-    }
+    data.append("file", this.files[0]);
   });
-  if (archivos.length > 0) {
+  var i = 0;
+  for (var value of data.values()) {
+    i++;
+  }
+  if (i > 0) {
     var json = { file: archivos, description: descripciones };
-
     $.ajax({
       type: "POST",
       url: "https://emersis.casya.com.ar/api/v1/novedades/" + id + "/files",
-      data: JSON.stringify(json),
-      contentType: "multipart/form-data",
-      success: function () {
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function (result) {
         cerrarCrearNovedad();
         getNovedades();
       },
