@@ -20,6 +20,9 @@ function getNovedades() {
           novedad.titulo +
           "</h2>" +
           "<div>" +
+          '<button class="btn btn-info" style="margin-right: 10px;" onclick="verArchivosNovedad(' +
+          novedad.id +
+          ')">Archivos</button>' +
           '<button class="btn btn-primary" style="margin-right: 10px;" onclick="editarNovedad(' +
           novedad.id +
           ')">Editar</button>' +
@@ -146,4 +149,33 @@ function guardarArchivos(id) {
     cerrarCrearNovedad();
     getNovedades();
   }
+}
+function verArchivosNovedad(id) {
+  $(".novedad-archivos-popup-container").fadeIn();
+  $.ajax({
+    type: "GET",
+    url: "https://emersis.casya.com.ar/api/v1/novedades/" + id + "/files",
+    success: function (result) {
+      novedad = result;
+      $("#novedad-archivos-popup").empty();
+      novedad.files.forEach((file) => {
+        var item =
+          "<div>" +
+          "<label>" +
+          file.descripcion +
+          "</label>" +
+          '<a href="https://emersis.casya.com.ar/public/storage/files/' +
+          file.file +
+          '" download="archivo" >Descargar</a>' +
+          "</div>";
+      });
+    },
+    error: function (result) {},
+    contentType: "application/json",
+  });
+}
+function cerrarArchivosPopup() {
+  $(".novedad-archivos-popup-container").fadeOut(function () {
+    $("#novedad-archivos-popup").empty();
+  });
 }
