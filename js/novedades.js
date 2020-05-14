@@ -65,7 +65,7 @@ function guardarNovedad() {
     descripcion: descripcion,
     activo: activo,
   };
-  var url = "https://emersis.casya.com.ar/api/v1/novedades";
+  var url = "http://emersis.casya.com.ar/api/v1/novedades";
   var type = "POST";
   if (novedadElegida != null) {
     url = url + "/" + novedadElegida.id;
@@ -99,7 +99,7 @@ function editarNovedad(id) {
 function eliminarNovedad(id) {
   $.ajax({
     type: "DELETE",
-    url: "https://emersis.casya.com.ar/api/v1/novedades/" + id,
+    url: "http://emersis.casya.com.ar/api/v1/novedades/" + id,
     success: function () {
       getNovedades();
     },
@@ -117,23 +117,24 @@ function guardarArchivos(id) {
   if (id == null && novedadElegida != null) {
     id = novedadElegida.id;
   }
-  var data = new FormData();
+  var archivos = [];
+  var descripciones = [];
   $(".novedad-archivo").each(function () {
-    data.append("file", this.files[0]);
+    if (this.files[0] != null) {
+      archivos.push(this.files[0]);
+      descripciones.push(this.files[0].name);
+    }
   });
-  var i = 0;
-  for (var value of data.values()) {
-    i++;
-  }
-  if (i > 0) {
+  if (archivos.length > 0) {
+    var json = { file: archivos, description: descripciones };
+
     $.ajax({
       type: "POST",
       url: "https://emersis.casya.com.ar/api/v1/novedades/" + id + "/files",
-      data: data,
-      cache: false,
-      contentType: false,
-      processData: false,
+      data: JSON.stringify(json),
+      contentType: "multipart/form-data",
       success: function (result) {
+        console.log(result);
         cerrarCrearNovedad();
         getNovedades();
       },
