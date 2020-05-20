@@ -125,25 +125,22 @@ function guardarArchivos(id) {
     data.append("file[" + index +"]", this.files[0]);
     data.append("description["+ index +"]", this.files[0].name);
   });
-  if (true) {
-    $.ajax({
-      type: "POST",
-      url: "https://emersis.casya.com.ar/api/v1/novedades/" + id + "/files",
-      data: data,
-      cache: false,
-      contentType: false,
-      processData: false,
-      success: function (result) {
-        console.log(result);
-      },
-      error: function (result) {
-        console.log(result);
-      },
-    });
-  } else {
-    cerrarCrearNovedad();
-    getNovedades();
-  }
+  $.ajax({
+    type: "POST",
+    url: "https://emersis.casya.com.ar/api/v1/novedades/" + id + "/files",
+    data: data,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (result) {
+      console.log(result);
+      cerrarCrearNovedad();
+      getNovedades();
+    },
+    error: function (result) {
+      console.log(result);
+    },
+  });
 }
 function verArchivosNovedad(id) {
   $(".novedad-archivos-popup-container").fadeIn();
