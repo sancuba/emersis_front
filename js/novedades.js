@@ -128,7 +128,7 @@ function guardarArchivos(id) {
   if (true) {
     $.ajax({
       type: "POST",
-      url: "https://emersis.casya.com.ar/api/v1/novedades/18/files",
+      url: "https://emersis.casya.com.ar/api/v1/novedades/" + id + "/files",
       data: data,
       cache: false,
       contentType: false,
