@@ -132,12 +132,11 @@ function guardarArchivos(id) {
     cache: false,
     contentType: false,
     processData: false,
-    success: function (result) {
-      console.log(result);
+    done: function (result) {
       cerrarCrearNovedad();
       getNovedades();
     },
-    error: function (result) {
+    fail: function (result) {
       console.log(result);
     },
   });
